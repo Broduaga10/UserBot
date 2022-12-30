@@ -6,7 +6,7 @@ from json import loads
 import os.path
 import logging
 
-read1 = open("C:\\Users\\micro\\PycharmProjects\\UserBot_Telegram\\userbot_files\\config.cfg",
+read1 = open("C:\\userbot_files\\config.cfg",
              'r', encoding='UTF-8', errors='replace')
 txt1 = read1.read()
 read1.close()
@@ -31,7 +31,7 @@ def get_id(client, message):
     def editText(edittxt):
         app.edit_message_text(chat_id=chat_id, message_id=message_id, text=edittxt)
 
-    read = open("C:\\Users\\micro\\PycharmProjects\\UserBot_Telegram\\userbot_files\\config.cfg",
+    read = open("C:\\userbot_files\\config.cfg",
                 'r', encoding='UTF-8', errors='replace')
     txt = read.read()
     read.close()
