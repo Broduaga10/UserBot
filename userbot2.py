@@ -287,15 +287,15 @@ def get_id(client, message):
                              f"**Chat:** {res_dict['chat_title']}\n" \
                              f"**Date:** {res_dict['date'].split()[0]}\n" \
                              f"**Time:** {res_dict['date'].split()[1]}"
+                    break
             elif el.split('⋙')[0] == name:
                 result = ''
                 for i in el.split('⋙')[1].split("↹"):
                     result += i + '\n'
-
-            editText(result)
-            break
+                break
         else:
             editText("**This title is not in the list**")
+        editText(result)
     elif command in commands["vm"]:
         name = message.text.split(mess[0].lower())[1][1:]
         reply = None
@@ -401,13 +401,10 @@ def get_id(client, message):
             message.delete()
             return
 
-        msg_ids = []
         for i in range(num):
             msg = app.send_message(chat_id, txt, reply_to_message_id=reply)
             if autodel:
-                msg_ids.append(msg.id)
-        for el in msg_ids:
-            app.delete_messages(chat_id, el)
+                app.delete_messages(chat_id, msg.id)
 
         app.send_message(chat_id, "Done!")
     elif command in commands["all_id"]:
@@ -553,7 +550,6 @@ def get_id(client, message):
 
         result = ''
         for line in lines:
-            # print(line)
             if command in ["prefix", "префикс"] and line.split(':')[0] == '"prefix"':
                 result += f'"prefix": {new_prefix},\n'
                 editText(f"**Done!**\nNew prefix: {new_prefix}")
